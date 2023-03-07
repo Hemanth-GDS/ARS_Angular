@@ -5,7 +5,8 @@
         <div class="col-md-6">  <strong class="float-left">{{title}}</strong>
         </div>
         <div class="col-md-6" style="text-align: right;">
-          <span data-bs-toggle="modal" data-bs-target="#addModal" class="clickableItem">
+          <!-- <span data-bs-toggle="modal" data-bs-target="#addModal" class="clickableItem"> -->
+            <span (click)="openModal(template)" class="clickableItem">
            
             <i class="bi bi-plus-circle">Add</i></span>
         </div>
@@ -138,3 +139,47 @@
     </div>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="addParticipantInterest(interestFrm)" #interestFrm="ngForm" id="interestForm">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Participant</label>
+        <select class="form-control"
+        name="participantId"
+        [(ngModel)]="interestFrmData.participantId"
+        >
+          <option [value]="-1">Please select</option>
+          <option *ngFor="let item of participantList" [value]="item.participantId">{{item.name}}</option>
+        </select>
+        
+      </div>
+      <div class="mb-3">
+        <label>Please select your interest</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" [checked]="" name="angular" [(ngModel)]="interestFrmData.angular" >
+          <label class="form-check-label" for="">Angular</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" [checked]="" name="dotNet" [(ngModel)]="interestFrmData.dotNet" >
+        <label class="form-check-label" for="">.Net</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" [checked]="" name="azure" [(ngModel)]="interestFrmData.azure" >
+      <label class="form-check-label" for="">Azure</label>
+    </div>
+    </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+    <button type="submit" form="interestForm" class="btn btn-primary">Save changes</button>
+  </div>
+</ng-template>

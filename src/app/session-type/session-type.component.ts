@@ -69,7 +69,7 @@ export class SessionTypeComponent implements OnInit{
       }
     })
       this.closeModal();
-      this.getSessionType();
+      this.ngOnInit();
   }
 
   

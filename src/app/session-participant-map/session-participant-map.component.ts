@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ParticipantService } from '../_service/participant.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-session-participant-map',
@@ -10,13 +11,29 @@ import { ParticipantService } from '../_service/participant.service';
 })
 export class SessionParticipantMapComponent implements OnInit {
 
+  modalRef?: BsModalRef|null;
+
   constructor(private participantService:ParticipantService,
-    private toastrService:ToastrService){}
+    private toastrService:ToastrService,
+    private modalService:BsModalService
+    ){}
   ngOnInit(): void {
     this.initilizeForm();
     this.getlistData();
     this.getParticipantList();
     
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  closeModal() {
+    if (!this.modalRef) {
+      return;
+    }
+ 
+    this.modalRef.hide();
+    this.modalRef = null;
   }
   interestFrm={
     participantId:0,
@@ -91,7 +108,8 @@ console.log(data);
   
 this.participantService.addParticipantInterest(submittedFrm).subscribe({
   next:(v)=>{
-    this.getParticipantList(),
+    this.closeModal();
+    this.ngOnInit();//getParticipantList();
     
     this.toastrService.success("Data Successfully Saved");
   },
