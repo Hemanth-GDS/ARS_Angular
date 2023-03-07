@@ -1,0 +1,121 @@
+<div class="card border-success mb-3" >
+    <!-- <h5 class="card-header">{{title}}</h5>
+    <div class="col-md-6" style="text-align: right;">
+      <button type="submit" form="myForm" class="btn btn-primary">Submit</button>
+    </div> -->
+    <div class="card-header bg-transparent border-success">
+      
+      <div class="row">
+        <div class="col-md-6">  <strong class="float-left">{{title}}</strong>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          <button type="submit" form="myForm" class="btn btn-primary">
+            <i class="bi bi-cloud-arrow-up-fill"> Submit</i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      
+      <form (ngSubmit)="onSubmit(sessionForm)" #sessionForm="ngForm" id="myForm">
+        
+           
+          <div class="row">
+            <div class="col">
+              <label for="author">Trainer</label>
+                <select class="form-control"
+                  name="trainer"
+                    [(ngModel)]="session.trainer"
+                    required
+                    #trainer="ngModel" 
+                    [class.is-invalid]="trainer.invalid && trainer.touched">
+                    <option value="">Select Catagory</option>
+                    <option *ngFor="let trainer of trainerList" [value]="trainer.participantId">{{trainer.name}}</option>
+                  </select>
+            </div>
+            <div class="col">
+              <label for="author">Session Date</label>
+                <input type="text"
+                name="sessionDate"
+                [(ngModel)]="session.sessionDate"
+                class="form-control"
+                placeholder="Datepicker"
+                bsDatepicker
+                [bsValue]="session.sessionDate"
+                [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' }"
+              
+                >
+            </div>
+            <div class="col">
+              <label for="author">Session Type</label>
+                <select class="form-control"
+                name="sessionType"
+                [(ngModel)]="session.sessionType"
+                required
+                #sessionType="ngModel" 
+                [class.is-invalid]="sessionType.invalid && sessionType.touched">
+                <option value="">Select Catagory</option>
+                <option *ngFor="let session of sessionCatagoryList" [value]="session.id">{{session.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            
+            <div class="col">
+              <label for="author">Attendance File</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="validatedCustomFile" required (change)="handleFileUpload($event)">
+                    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                  </div>
+            </div>
+
+            
+            
+          </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="card border-success mb-3" >
+    <!-- <h5 class="card-header">{{title}}</h5>
+    <div class="col-md-6" style="text-align: right;">
+      <button type="submit" form="myForm" class="btn btn-primary">Submit</button>
+    </div> -->
+    <div class="card-header bg-transparent border-success">
+      
+      <div class="row">
+        <div class="col-md-6">  <strong class="float-left">{{title}}</strong>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          <button type="submit" form="singleParticipantFrm" class="btn btn-primary">
+            <i class="bi bi-cloud-arrow-up-fill"> Submit</i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="singleParticipantSubmit(singleParticipantFrm)" #singleParticipantFrm="ngForm" id="singleParticipantFrm">
+        <div class="row">
+          <div class="col">
+            <input type="text" name="name" class="form-control" placeholder="name" ngModel>
+            </div>
+            <div class="col">
+            <input type="email" name="email" class="form-control" placeholder="email" ngModel>
+            </div>
+            <div class="col">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" [checked]="" name="isActive" ngModel >
+              <label class="form-check-label" for="">Is Active</label>
+            </div>
+
+          </div>
+        </div>
+      </form>
+      </div>
+  </div>
+
+  

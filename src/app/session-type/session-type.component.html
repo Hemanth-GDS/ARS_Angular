@@ -1,0 +1,133 @@
+
+<div class="card border-success mb-3" style="max-width: 100%;">
+  <div class="card-header bg-transparent border-success">
+      
+    <div class="row">
+      <div class="col-md-6">  <strong class="float-left">{{title}}</strong>
+      </div>
+      <div class="col-md-6" style="text-align: right;">
+        <!-- <span data-bs-toggle="modal" data-bs-target="#addModal" class="clickableItem"> -->
+          <span (click)="openModal(template)" class="clickableItem">
+         
+          <i class="bi bi-plus-circle">Add</i></span>
+      </div>
+    </div>
+  </div>
+    <div class="card-body text-success">
+
+        <div class="row">
+            <div class="col-xs-12 col-12">
+               <div class="content-wrapper">
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">SelectAll</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Is Active</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let data of listData 
+                      ;let i=index ">  
+                      <tr>
+                        <th>{{i+1}}</th>
+                        <!--<th scope="row" ><a class="" style="cursor:pointer">{{data.id}}</a></th>
+                         <td><a routerLink="/book/{{book.id}}">{{book.name}}</a></td> -->
+                  
+                        <td>{{data.id}}</td>
+                        <td>{{data.name }}</td>
+                        <td>{{data.isActive}}</td>
+                        
+                      </tr>
+                    </ng-container> 
+                      
+                    
+                    </tbody>
+                  </table>
+                  <!-- <div class="d-flex justify-content-center">
+                    <pagination-controls
+                      previousLabel="Prev"
+                      nextLabel="Next"
+                      (pageChange)="onTableDataChange($event)"
+                    >
+                    </pagination-controls>
+                    <select class="" (change)="onTableSizeChange($event)">
+                        <option *ngFor="let value of tableSizes">{{value}}</option>
+                    </select>
+                    </div> -->
+
+               </div>
+            </div>
+        </div>
+    </div>
+
+     <!--  Add Modal -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Session Type</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+          <form (ngSubmit)="onSubmit(sessionTypeForm)" #sessionTypeForm="ngForm" id="sessionTypeFrm">
+            
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Session Type</label>
+            <input type="text" class="form-control" name="sessionType" placeholder="Session Type" [(ngModel)]="formData.sessionType">
+            
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" name="isActive" type="checkbox"   [(ngModel)]="formData.isActive" >
+            <label class="form-check-label" for="">Is Active</label>
+          </div>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="xyz()">click</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" form="sessionTypeFrm" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(sessionTypeForm)" #sessionTypeForm="ngForm" id="sessionTypeFrm">
+            
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Session Type</label>
+        <input type="text" class="form-control" name="sessionType" placeholder="Session Type" [(ngModel)]="formData.sessionType">
+        
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" name="isActive" type="checkbox"   [(ngModel)]="formData.isActive" >
+        <label class="form-check-label" for="">Is Active</label>
+      </div>
+     
+    </form>
+  </div>
+  <div class="modal-footer">
+    
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+    <button type="submit" form="sessionTypeFrm" class="btn btn-primary">Save changes</button>
+  </div>
+</ng-template>
+
+

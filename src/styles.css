@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.active-link{
+    background-color: rgba(216, 213, 219, 0.874);
+    font:bold;
+    
+}
+.align-right{
+    float: right;
+}
+.clickableItem {
+    cursor: pointer
+}

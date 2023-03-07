@@ -1,0 +1,69 @@
+<div class="card border-success mb-3" style="max-width: 100%;">
+    <div class="card-header bg-transparent border-success">
+      
+      <div class="row">
+        <div class="col-md-6">  <strong class="float-left">{{"Participant List"}}</strong>
+        </div>
+        <div class="col-md-6" style="text-align: right;">
+          
+        </div>
+      </div>
+    </div>
+    <div class="card-body text-success">
+
+        <div class="row">
+            
+            <div class="col-xs-12 col-12">
+               <div class="content-wrapper">
+                <div class="col-md-3 align-right">
+                <input type="text" class="form-control" placeholder="search by name" [(ngModel)]="searchText.participant">
+                </div> 
+                <!-- <p class="content-item" *ngFor="let content of returnedArray">{{content}}</p> -->
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">SelectAll</th>
+                        <!-- <th scope="col">Id</th> -->
+                        <th scope="col">Participant</th>
+                        <th scope="col">Session Type</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Trainer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let data of listData | filterBy:searchText 
+                      |  paginate
+                      : {
+                          itemsPerPage: tableSize,
+                          currentPage: page,
+                          totalItems: count
+                        };let i=index ">  
+                      <tr>
+                        <th>{{i+1}}</th>
+                        <!--<th scope="row" ><a class="" style="cursor:pointer">{{data.id}}</a></th>
+                         <td><a routerLink="/book/{{book.id}}">{{book.name}}</a></td> -->
+                        <td><a class="" style="cursor:pointer">{{data.participant }}</a></td>
+                        <td>{{data.sessionType}}</td>
+                        <td>{{data.date | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{data.trainerName}}</td>
+                        
+                      </tr>
+                    </ng-container> 
+                      
+                    
+                    </tbody>
+                  </table>
+                  <div class="d-flex justify-content-center">
+                    <pagination-controls
+                      previousLabel="Prev"
+                      nextLabel="Next"
+                      (pageChange)="onTableDataChange($event)"
+                    >
+                    </pagination-controls>
+                    <select class="" (change)="onTableSizeChange($event)">
+                        <option *ngFor="let value of tableSizes">{{value}}</option>
+                    </select>
+                  </div>
+               </div>
+
+    </div>
