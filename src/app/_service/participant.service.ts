@@ -5,15 +5,17 @@ import {sessionParticipant,participantSession} from '../models/sessionParticipan
 import {Participant} from '../models/participantModel'
 import { ReturnStatement } from '@angular/compiler';
 import { isObjectEmpty } from 'ngx-bootstrap/chronos/utils/type-checks';
+import { Environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ParticipantService {
 
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient
+    ) {}
 
-   BaseUrl="https://localhost:7130/api/";
+   BaseUrl=Environment.API_BASE_URL;
 
   getHeader(){
     const header= new HttpHeaders()

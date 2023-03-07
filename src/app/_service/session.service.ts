@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { SessionType } from '../models/sessionTypeModel';
+import { Environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
- BasUrl:string="https://localhost:7130/api/"
+ BasUrl:string=Environment.API_BASE_URL;
   constructor(private http:HttpClient) {}
 
   getHeader(){
